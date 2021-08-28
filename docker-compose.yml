@@ -1,0 +1,42 @@
+version: '3.7'
+services:
+  node-app:
+    build: .
+    image: node-app:1.0
+    ports:
+      - '9999:9999'
+
+  postgresdb:
+    image: postgres:12-alpine
+    ports:
+      - '5432:5432'
+    restart: always
+    volumes:
+      - ./data:/var/lib/postgres
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: pass
+
+  mysqldb:
+    image: mysql:8.0.26
+    ports:
+      - '3306:3306'
+    volumes:
+      - ./data:/var/lib/mysql
+    environment:
+      MYSQL_RANDOM_ROOT_PASSWORD: 'yes'
+      MYSQL-DATABASE: mysql
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: pass
+
+#  aqa-shop:
+#    depends_on:
+#      - 'postgresdb'
+#      - 'mysqldb'
+#      - 'node-app'
+#    build: .
+#    image: aqa-shop.jar
+#    ports:
+#      - '8080:8080'
+
