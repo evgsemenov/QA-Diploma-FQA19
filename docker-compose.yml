@@ -27,8 +27,8 @@ services:
     environment:
       MYSQL_RANDOM_ROOT_PASSWORD: 'yes'
       MYSQL-DATABASE: mysql
-      POSTGRES_USER: user
-      POSTGRES_PASSWORD: pass
+      MYSQL_USER: user
+      MYSQL_PASSWORD: pass
 
   aqa-shop:
     depends_on:
