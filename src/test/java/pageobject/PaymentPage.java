@@ -19,6 +19,9 @@ public class PaymentPage {
     private SelenideElement nameField = $(byText("Владелец")).parent().$(".input__control");
     private SelenideElement cvvNumberField = $(byText("CVC/CVV")).parent().$(".input__control");
     private SelenideElement nextButton = $(byText("Продолжить"));
+    private SelenideElement successNotification = $(".notification_status_ok");
+    private SelenideElement errorNotification = $(".notification_status_error");
+    private SelenideElement inputInvalid = $(".input__sub");
 
 
     public PaymentPage() {
@@ -49,7 +52,9 @@ public class PaymentPage {
 
     public void SucessfullSendingForm (String card, String month, String year, String name, String cvv) {
         fillPaymentInfo(card, month, year, name, cvv);
-
+        successNotification.shouldBe(visible).shouldHave(exactText("Успешно\n" + "Операция одобрена Банком."));
     }
+
+
 
 }

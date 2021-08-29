@@ -1,4 +1,4 @@
-FROM openjdk:8-slim
+FROM adoptopenjdk/openjdk11:alpine-jre
 WORKDIR /opt/app
 COPY . .
 CMD ["java", "-jar", "aqa-shop.jar"]
