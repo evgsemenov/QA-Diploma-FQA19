@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: startup postgres and mysql
-      run: docker-compose -f docker-compose.yml -f docker-compose.ci.yml up -d
+      run: docker-compose up -d
  
   run:
     needs: build  
