@@ -6,11 +6,11 @@ name: Gradle Package
 on: [push]
 
 jobs:
-  setup:
-    runs-on: ubuntu-latest
-    steps:
-    - name: build gate-simulator image    
-      run: docker build -t node-app:1.0 gate-simulator 
+#   setup:
+#     runs-on: ubuntu-latest
+#     steps:
+#     - name: build gate-simulator image    
+#       run: docker build -t node-app:1.0 gate-simulator 
     
   build:
     needs: setup
