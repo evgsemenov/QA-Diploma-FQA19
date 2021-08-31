@@ -3,9 +3,8 @@ package data;
 import com.github.javafaker.Faker;
 import lombok.Value;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 import java.util.Random;
 
@@ -27,7 +26,6 @@ public class DataHelper {
         private String year;
         private String cardHolder;
         private String cvv;
-
     }
 
     public static PaymentInfo getApprovedPayment(int plusMonth) {
@@ -41,14 +39,12 @@ public class DataHelper {
     }
 
     public static String expiryYear(int plusMonth) {
-        DateFormat dateFormat = new SimpleDateFormat("yy");
-        var year = dateFormat.format(expiryDate(plusMonth).getYear());
-        // TODO Всегда возвращает 70  !!???
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yy");
+        var year = expiryDate(plusMonth).format(formatter);
         return year;
     }
 
     public static String expiryMonth(int plusMonths) {
-        DateFormat dateFormat = new SimpleDateFormat("MM");
         var month = expiryDate(plusMonths).getMonthValue();
         if (month < 10) {
             String monthFormat= "0" + Integer.toString(month);
