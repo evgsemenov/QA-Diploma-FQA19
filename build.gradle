@@ -30,6 +30,9 @@ dependencies {
     testImplementation 'com.codeborne:selenide:5.19.0'
     testImplementation 'com.github.javafaker:javafaker:1.0.2'
     testImplementation 'io.qameta.allure:allure-selenide:2.14.0'
+    testImplementation 'mysql:mysql-connector-java:8.0.18'
+    testImplementation 'commons-dbutils:commons-dbutils:1.7'
+    testImplementation 'io.rest-assured:rest-assured:4.3.1'
 }
 
 test {

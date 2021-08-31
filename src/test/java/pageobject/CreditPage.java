@@ -2,6 +2,8 @@ package pageobject;
 
 import com.codeborne.selenide.SelenideElement;
 
+import java.time.Duration;
+
 import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selectors.byText;
@@ -52,7 +54,7 @@ public class CreditPage {
     public void successfulSendingForm (String card, String month, String year, String name, String cvv) {
         fillPaymentInfo(card, month, year, name, cvv);
         nextButton.click();
-        successNotification.waitUntil(visible, 15000).
+        successNotification.shouldBe(visible, Duration.ofSeconds(15)).
                 shouldHave(exactText("Успешно\n" + "Операция одобрена Банком."));
     }
 
