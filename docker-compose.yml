@@ -1,40 +1,43 @@
 version: '3.7'
 services:
-  node-app:
-    build: .
-    image: node-app:1.0
-    ports:
-      - '9999:9999'
-
-  postgresdb:
-    image: postgres:12-alpine
-    ports:
-      - '5432:5432'
-    restart: always
-    volumes:
-      - ./data:/var/lib/postgres
-    environment:
-      POSTGRES_DB: postgres
-      POSTGRES_USER: user
-      POSTGRES_PASSWORD: pass
-
-  mysqldb:
+  mysql:
     image: mysql:8.0.26
     ports:
       - '3306:3306'
-    volumes:
-      - ./data:/var/lib/mysql
+    #    volumes:
+    #      - ./data:/var/lib/mysql
     environment:
       MYSQL_RANDOM_ROOT_PASSWORD: 'yes'
       MYSQL-DATABASE: mysql
       MYSQL_USER: user
       MYSQL_PASSWORD: pass
 
+  postgres:
+    image: postgres:12-alpine
+    ports:
+      - '5432:5432'
+    restart: always
+#    volumes:
+#      - ./data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: pass
+
+  gate-simulator:
+    depends_on:
+      - mysql
+    build: .
+    image: gate-simulator
+    ports:
+      - '9999:9999'
+
+
 #  aqa-shop:
 #    depends_on:
-#      - 'postgresdb'
-#      - 'mysqldb'
-#      - 'node-app'
+#      - 'postgres'
+#      - 'mysql'
+#      - 'gate-simulator'
 #    build: .
 #    image: aqa-shop
 #    ports:

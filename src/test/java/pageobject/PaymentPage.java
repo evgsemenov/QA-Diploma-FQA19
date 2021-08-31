@@ -9,6 +9,7 @@ import static com.codeborne.selenide.Selenide.$;
 import static org.openqa.selenium.Keys.CONTROL;
 import static org.openqa.selenium.Keys.DELETE;
 
+
 public class PaymentPage {
 
     private SelenideElement header = $("[class = 'heading heading_size_m heading_theme_alfa-on-white']");
@@ -33,7 +34,7 @@ public class PaymentPage {
         return new CreditPage();
     }
 
-    private void clearField() {
+    private void clearForm() {
         cardNumberField.sendKeys(CONTROL + "A", DELETE);
         monthField.sendKeys(CONTROL + "A", DELETE);
         yearField.sendKeys(CONTROL + "A", DELETE);
@@ -41,8 +42,8 @@ public class PaymentPage {
         cvvNumberField.sendKeys(CONTROL + "A", DELETE);
     }
 
-    private void fillPaymentInfo (String card, String month, String year, String name, String cvv) {
-        clearField();
+    public void fillPaymentInfo (String card, String month, String year, String name, String cvv) {
+        clearForm();
         cardNumberField.setValue(card);
         monthField.setValue(month);
         yearField.setValue(year);
@@ -50,11 +51,21 @@ public class PaymentPage {
         cvvNumberField.setValue(cvv);
     }
 
-    public void SucessfullSendingForm (String card, String month, String year, String name, String cvv) {
+    public void successfulSendingForm (String card, String month, String year, String name, String cvv) {
         fillPaymentInfo(card, month, year, name, cvv);
-        successNotification.shouldBe(visible).shouldHave(exactText("Успешно\n" + "Операция одобрена Банком."));
+        nextButton.click();
+        successNotification.waitUntil(visible, 15000).
+                shouldHave(exactText("Успешно\n" + "Операция одобрена Банком."));
     }
 
+    public void sendClearForm() {
+        clearForm();
+        nextButton.click();
+        inputInvalid.shouldBe(visible);
+    }
 
-
+    public void sendInvalidForm() {
+        nextButton.click();
+        inputInvalid.shouldBe(visible);
+    }
 }
