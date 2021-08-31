@@ -1,7 +1,7 @@
 package pageobject;
 
-import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
+import lombok.Data;
 
 import java.time.Duration;
 
@@ -12,9 +12,8 @@ import static com.codeborne.selenide.Selenide.$;
 import static org.openqa.selenium.Keys.CONTROL;
 import static org.openqa.selenium.Keys.DELETE;
 
-
+@Data
 public class PaymentPage {
-
     private SelenideElement header = $("[class = 'heading heading_size_m heading_theme_alfa-on-white']");
     private SelenideElement creditButton = $(byText("Купить в кредит"));
     private SelenideElement cardNumberField = $(byText("Номер карты")).parent().$(".input__control");
@@ -26,7 +25,6 @@ public class PaymentPage {
     private SelenideElement successNotification = $(".notification_status_ok");
     private SelenideElement errorNotification = $(".notification_status_error");
     private SelenideElement inputInvalid = $(".input__sub");
-
 
     public PaymentPage() {
         header.shouldBe(visible).shouldHave(exactText("Оплата по карте"));
