@@ -1,19 +1,37 @@
 package test_suit;
 
+import com.codeborne.selenide.logevents.SelenideLogger;
 import data.DataHelper;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import io.qameta.allure.selenide.AllureSelenide;
+import org.junit.jupiter.api.*;
 import pageobject.TourPurchasePage;
 
+import static com.codeborne.selenide.Selenide.closeWindow;
 import static com.codeborne.selenide.Selenide.open;
 
 public class UI_Test {
     TourPurchasePage tourPurchasePage;
 
+    @BeforeAll
+    static void allureSetup() {
+        SelenideLogger.addListener("allure", new AllureSelenide().
+                screenshots(true).savePageSource(false));
+    }
+
     @BeforeEach
     void browserSetUp(){
         open("http://localhost:8080/");
         tourPurchasePage = new TourPurchasePage();
+    }
+
+    @AfterEach
+    void tearDown() {
+        closeWindow();
+    }
+
+    @AfterAll
+    static void tearDownAllure() {
+        SelenideLogger.removeListener("allure");
     }
 
     @Test
