@@ -8,6 +8,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.Random;
 
+
 public class DataHelper {
     private DataHelper() {
     }
@@ -22,25 +23,33 @@ public class DataHelper {
         private String cardNumber;
         private String month;
         private String year;
-        private String name;
+        private String cardHolder;
         private String cvv;
 
     }
 
-    public static PaymentInfo getApprovedPayment() {
-        return new PaymentInfo(approvedCard, randomMonth(localDate.getMonthValue(),12), localYear(),
+    public static PaymentInfo getApprovedPayment(int plusMonth) {
+        return new PaymentInfo(approvedCard, expiryMonth(plusMonth), expiryYear(plusMonth),
                 getRandomName(), getRandomCVV());
     }
 
-    public static String localYear() {
+    public static LocalDate expiryDate(int plusMonth) {
+        var expiryDate = localDate.now().plusMonths(plusMonth);
+        return expiryDate;
+    }
+
+
+    public static String expiryYear(int plusMonth) {
         DateFormat dateFormat = new SimpleDateFormat("yy");
-        var year = dateFormat.format(localDate.getYear());
+        var year = dateFormat.format(expiryDate(plusMonth).getYear());
+        // TODO Всегда возвращает 70  !!???
         return year;
     }
 
 
-    public static String localMonth() {
-        var month = localDate.getMonthValue();
+    public static String expiryMonth(int plusMonths) {
+        DateFormat dateFormat = new SimpleDateFormat("MM");
+        var month = expiryDate(plusMonths).getMonthValue();
         if (month < 10) {
             String monthFormat= "0" + Integer.toString(month);
             return monthFormat;
@@ -48,18 +57,14 @@ public class DataHelper {
         return Integer.toString(month);
     }
 
-    public static String randomMonth(int min, int max) {
+    public static int randomPlusMonth() {
         Random random = new Random();
-        var month = random.ints(min,(max+1)).findFirst().getAsInt();
-        if (month < 10) {
-            String monthFormat= "0" + Integer.toString(month);
-            return monthFormat;
-        }
-        return Integer.toString(month);
+       int plusMonth = random.nextInt(58) + 1;
+       return plusMonth;
     }
 
     public static String getRandomName(){
-        String name = faker.name().lastName();
+        String name = faker.name().fullName();
         return name;
     }
 
