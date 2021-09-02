@@ -1,28 +1,28 @@
 version: '3.7'
 services:
   mysql:
-    image: mysql:8.0.26
+    image: mysql:8.0.18
     ports:
       - '3306:3306'
-    #    volumes:
-    #      - ./data:/var/lib/mysql
+    volumes:
+      - ./data_mysql:/var/lib/mysql
     environment:
       MYSQL_RANDOM_ROOT_PASSWORD: 'yes'
-      MYSQL-DATABASE: mysql
-      MYSQL_USER: user
+      MYSQL-DATABASE: app
+      MYSQL_USER: app
       MYSQL_PASSWORD: pass
 
-  postgres:
-    image: postgres:12-alpine
-    ports:
-      - '5432:5432'
-    restart: always
+#  postgres:
+#    image: postgres:12-alpine
+#    ports:
+#      - '5432:5432'
+#    restart: always
 #    volumes:
 #      - ./data:/var/lib/postgresql/data
-    environment:
-      POSTGRES_DB: postgres
-      POSTGRES_USER: user
-      POSTGRES_PASSWORD: pass
+#    environment:
+#      POSTGRES_DB: postgres
+#      POSTGRES_USER: app
+#      POSTGRES_PASSWORD: pass
 
   gate-simulator:
     depends_on:
@@ -31,7 +31,6 @@ services:
     image: gate-simulator
     ports:
       - '9999:9999'
-
 
 #  aqa-shop:
 #    depends_on:
