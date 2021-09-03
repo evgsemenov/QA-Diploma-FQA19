@@ -1,5 +1,6 @@
-FROM node:erbium-alpine3.14
-WORKDIR /opt/app
+FROM node:latest
+WORKDIR /app
 COPY . .
+RUN npm install
 CMD ["npm", "start"]
 EXPOSE 9999
