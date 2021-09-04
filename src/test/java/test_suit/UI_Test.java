@@ -186,8 +186,7 @@ public class UI_Test {
     void shouldNotAllowLatinSymbolsInCardNumberFieldOnPaymentPageTest() {
         var paymentPage = tourPurchasePage.payForTour();
         paymentPage.getCardNumberField().setValue(DataHelper.getRandomLatinSymbols());
-        String expected = "";
-        assertEquals(expected, paymentPage.getCardNumberField().getValue());
+        assertEquals("", paymentPage.getCardNumberField().getValue());
     }
 
     @Test
@@ -195,8 +194,7 @@ public class UI_Test {
     void shouldNotAllowCyrillicSymbolsInCardNumberFieldOnPaymentPageTest() {
         var paymentPage = tourPurchasePage.payForTour();
         paymentPage.getCardNumberField().setValue(DataHelper.getRandomCyrillicSymbols());
-        String expected = "";
-        assertEquals(expected, paymentPage.getCardNumberField().getValue());
+        assertEquals("", paymentPage.getCardNumberField().getValue());
     }
 
     @Test
@@ -204,8 +202,7 @@ public class UI_Test {
     void shouldNotAllowSpecialCharactersInCardNumberFieldOnCreditPageTest() {
         var creditPage = tourPurchasePage.buyWithCredit();
         creditPage.getCardNumberField().setValue("!@#$%^&*()_+-~|");
-        String expected = "";
-        assertEquals(expected, creditPage.getCardNumberField().getValue());
+        assertEquals("", creditPage.getCardNumberField().getValue());
     }
 
     @Test
@@ -213,8 +210,7 @@ public class UI_Test {
     void shouldNotAllowLatinSymbolsInCardNumberFieldOnCreditPageTest() {
         var creditPage = tourPurchasePage.buyWithCredit();
         creditPage.getCardNumberField().setValue(DataHelper.getRandomLatinSymbols());
-        String expected = "";
-        assertEquals(expected, creditPage.getCardNumberField().getValue());
+        assertEquals("", creditPage.getCardNumberField().getValue());
     }
 
     @Test
@@ -222,8 +218,7 @@ public class UI_Test {
     void shouldNotAllowCyrillicSymbolsInCardNumberFieldOnCreditPageTest() {
         var creditPage = tourPurchasePage.buyWithCredit();
         creditPage.getCardNumberField().setValue(DataHelper.getRandomCyrillicSymbols());
-        String expected = "";
-        assertEquals(expected, creditPage.getCardNumberField().getValue());
+        assertEquals("", creditPage.getCardNumberField().getValue());
     }
 
     @Test
@@ -231,8 +226,7 @@ public class UI_Test {
     void shouldNotAllowSpecialCharactersInCardNumberFieldOnPaymentPageTest() {
         var creditPage = tourPurchasePage.buyWithCredit();
         creditPage.getCardNumberField().setValue("!@#$%^&*()_+-~|");
-        String expected = "";
-        assertEquals(expected, creditPage.getCardNumberField().getValue());
+        assertEquals("", creditPage.getCardNumberField().getValue());
     }
 
     @Test
@@ -240,8 +234,7 @@ public class UI_Test {
     void shouldNotAllowLatinSymbolsInMonthFieldOnPaymentPageTest() {
         var paymentPage = tourPurchasePage.payForTour();
         paymentPage.getMonthField().setValue(DataHelper.getRandomLatinSymbols());
-        String expected = "";
-        assertEquals(expected, paymentPage.getMonthField().getValue());
+        assertEquals("", paymentPage.getMonthField().getValue());
     }
 
     @Test
@@ -249,8 +242,7 @@ public class UI_Test {
     void shouldNotAllowCyrillicSymbolsInMonthFieldOnPaymentPageTest() {
         var paymentPage = tourPurchasePage.payForTour();
         paymentPage.getMonthField().setValue(DataHelper.getRandomCyrillicSymbols());
-        String expected = "";
-        assertEquals(expected, paymentPage.getMonthField().getValue());
+        assertEquals("", paymentPage.getMonthField().getValue());
     }
 
     @Test
@@ -258,8 +250,7 @@ public class UI_Test {
     void shouldNotAllowSpecialNumbersInMonthFieldOnPaymentPageTest() {
         var paymentPage = tourPurchasePage.payForTour();
         paymentPage.getMonthField().setValue("!@#$%^&*()_+-~|");
-        String expected = "";
-        assertEquals(expected, paymentPage.getMonthField().getValue());
+        assertEquals("", paymentPage.getMonthField().getValue());
     }
 
     @Test
@@ -267,8 +258,7 @@ public class UI_Test {
     void shouldNotAllowLatinSymbolsInMonthFieldOnCreditPageTest() {
         var creditPage = tourPurchasePage.buyWithCredit();
         creditPage.getMonthField().setValue(DataHelper.getRandomLatinSymbols());
-        String expected = "";
-        assertEquals(expected, creditPage.getMonthField().getValue());
+        assertEquals("", creditPage.getMonthField().getValue());
     }
 
     @Test
@@ -276,8 +266,7 @@ public class UI_Test {
     void shouldNotAllowCyrillicSymbolsInMonthFieldOnCreditPageTest() {
         var creditPage = tourPurchasePage.buyWithCredit();
         creditPage.getMonthField().setValue(DataHelper.getRandomCyrillicSymbols());
-        String expected = "";
-        assertEquals(expected, creditPage.getMonthField().getValue());
+        assertEquals("", creditPage.getMonthField().getValue());
     }
 
     @Test
@@ -285,8 +274,7 @@ public class UI_Test {
     void shouldNotAllowSpecialNumbersInMonthFieldOnCreditPageTest() {
         var creditPage = tourPurchasePage.buyWithCredit();
         creditPage.getMonthField().setValue("!@#$%^&*()_+-~|");
-        String expected = "";
-        assertEquals(expected, creditPage.getMonthField().getValue());
+        assertEquals("", creditPage.getMonthField().getValue());
     }
 
     @Test
@@ -294,8 +282,7 @@ public class UI_Test {
     void shouldNotAllowCyrillicSymbolsInYearFieldOnPaymentPageTest() {
         var paymentPage = tourPurchasePage.payForTour();
         paymentPage.getYearField().setValue(DataHelper.getRandomCyrillicSymbols());
-        String expected = "";
-        assertEquals(expected, paymentPage.getYearField().getValue());
+        assertEquals("", paymentPage.getYearField().getValue());
     }
 
     @Test
@@ -303,8 +290,7 @@ public class UI_Test {
     void shouldNotAllowLatinZOSymbolsInYearFieldOnPaymentPageTest() {
         var paymentPage = tourPurchasePage.payForTour();
         paymentPage.getYearField().setValue(DataHelper.getRandomLatinSymbols());
-        String expected = "";
-        assertEquals(expected, paymentPage.getYearField().getValue());
+        assertEquals("", paymentPage.getYearField().getValue());
     }
 
     @Test
@@ -312,8 +298,7 @@ public class UI_Test {
     void shouldNotAllowSpecialCharactersInYearFieldOnPaymentPageTest() {
         var paymentPage = tourPurchasePage.payForTour();
         paymentPage.getYearField().setValue("!@#$%^&*()_+-~|");
-        String expected = "";
-        assertEquals(expected, paymentPage.getYearField().getValue());
+        assertEquals("", paymentPage.getYearField().getValue());
     }
 
     @Test
@@ -321,8 +306,7 @@ public class UI_Test {
     void shouldNotAllowCyrillicSymbolsInYearFieldOnCreditPageTest() {
         var creditPage = tourPurchasePage.buyWithCredit();
         creditPage.getYearField().setValue(DataHelper.getRandomCyrillicSymbols());
-        String expected = "";
-        assertEquals(expected, creditPage.getYearField().getValue());
+        assertEquals("", creditPage.getYearField().getValue());
     }
 
     @Test
@@ -330,8 +314,7 @@ public class UI_Test {
     void shouldNotAllowLatinZOSymbolsInYearFieldOnCreditPageTest() {
         var creditPage = tourPurchasePage.buyWithCredit();
         creditPage.getYearField().setValue(DataHelper.getRandomLatinSymbols());
-        String expected = "";
-        assertEquals(expected, creditPage.getYearField().getValue());
+        assertEquals("", creditPage.getYearField().getValue());
     }
 
     @Test
@@ -339,8 +322,7 @@ public class UI_Test {
     void shouldNotAllowSpecialCharactersInYearFieldOnCreditPageTest() {
         var creditPage = tourPurchasePage.buyWithCredit();
         creditPage.getYearField().setValue("!@#$%^&*()_+-~|");
-        String expected = "";
-        assertEquals(expected, creditPage.getYearField().getValue());
+        assertEquals("", creditPage.getYearField().getValue());
     }
 
     @Test
@@ -348,8 +330,7 @@ public class UI_Test {
     void shouldNotAllowNumbersInCardHolderFieldOnPaymentPageTest() {
         var paymentPage = tourPurchasePage.payForTour();
         paymentPage.getCardHolderField().setValue("0123456789");
-        String expected = "";
-        assertEquals(expected, paymentPage.getCardHolderField().getValue());
+        assertEquals("", paymentPage.getCardHolderField().getValue());
     }
 
     @Test
@@ -357,8 +338,7 @@ public class UI_Test {
     void shouldNotAllowSpecialNumbersInCardHolderFieldOnPaymentPageTest() {
         var paymentPage = tourPurchasePage.payForTour();
         paymentPage.getCardHolderField().setValue("!@#$%^&*()_+-~|");
-        String expected = "";
-        assertEquals(expected, paymentPage.getCardHolderField().getValue());
+        assertEquals("", paymentPage.getCardHolderField().getValue());
     }
 
     @Test
@@ -366,8 +346,7 @@ public class UI_Test {
     void shouldNotAllowNumbersInCardHolderFieldOnCreditPageTest() {
         var creditPage = tourPurchasePage.buyWithCredit();
         creditPage.getCardHolderField().setValue("0123456789");
-        String expected = "";
-        assertEquals(expected, creditPage.getCardHolderField().getValue());
+        assertEquals("", creditPage.getCardHolderField().getValue());
     }
 
     @Test
@@ -375,8 +354,7 @@ public class UI_Test {
     void shouldNotAllowSpecialNumbersInCardHolderFieldOnCreditPageTest() {
         var creditPage = tourPurchasePage.buyWithCredit();
         creditPage.getCardHolderField().setValue("!@#$%^&*()_+-~|");
-        String expected = "";
-        assertEquals(expected, creditPage.getCardHolderField().getValue());
+        assertEquals("", creditPage.getCardHolderField().getValue());
     }
 
     @Test
@@ -384,8 +362,7 @@ public class UI_Test {
     void shouldNotAllowCyrillicSymbolsInCvvNumberFieldOnPaymentPageTest() {
         var paymentPage = tourPurchasePage.payForTour();
         paymentPage.getCvvNumberField().setValue(DataHelper.getRandomCyrillicSymbols());
-        String expected = "";
-        assertEquals(expected, paymentPage.getCvvNumberField().getValue());
+        assertEquals("", paymentPage.getCvvNumberField().getValue());
     }
 
     @Test
@@ -393,8 +370,7 @@ public class UI_Test {
     void shouldNotAllowLatinSymbolsInCvvNumberFieldOnPaymentPageTest() {
         var paymentPage = tourPurchasePage.payForTour();
         paymentPage.getCvvNumberField().setValue(DataHelper.getRandomLatinSymbols());
-        String expected = "";
-        assertEquals(expected, paymentPage.getCvvNumberField().getValue());
+        assertEquals("", paymentPage.getCvvNumberField().getValue());
     }
 
     @Test
@@ -402,8 +378,7 @@ public class UI_Test {
     void shouldNotAllowSpecialNumbersInCvvNumberFieldOnPaymentPageTest() {
         var paymentPage = tourPurchasePage.payForTour();
         paymentPage.getCvvNumberField().setValue("!@#$%^&*()_+-~|");
-        String expected = "";
-        assertEquals(expected, paymentPage.getCvvNumberField().getValue());
+        assertEquals("", paymentPage.getCvvNumberField().getValue());
     }
 
     @Test
@@ -411,8 +386,7 @@ public class UI_Test {
     void shouldNotAllowCyrillicSymbolsInCvvNumberFieldOnCreditPageTest() {
         var creditPage = tourPurchasePage.buyWithCredit();
         creditPage.getCvvNumberField().setValue(DataHelper.getRandomCyrillicSymbols());
-        String expected = "";
-        assertEquals(expected, creditPage.getCvvNumberField().getValue());
+        assertEquals("", creditPage.getCvvNumberField().getValue());
     }
 
     @Test
@@ -420,8 +394,7 @@ public class UI_Test {
     void shouldNotAllowLatinSymbolsInCvvNumberFieldOnCreditPageTest() {
         var creditPage = tourPurchasePage.buyWithCredit();
         creditPage.getCvvNumberField().setValue(DataHelper.getRandomLatinSymbols());
-        String expected = "";
-        assertEquals(expected, creditPage.getCvvNumberField().getValue());
+        assertEquals("", creditPage.getCvvNumberField().getValue());
     }
 
     @Test
@@ -429,8 +402,7 @@ public class UI_Test {
     void shouldNotAllowSpecialNumbersInCvvNumberFieldOnCreditPageTest() {
         var creditPage = tourPurchasePage.buyWithCredit();
         creditPage.getCvvNumberField().setValue("!@#$%^&*()_+-~|");
-        String expected = "";
-        assertEquals(expected, creditPage.getCvvNumberField().getValue());
+        assertEquals("", creditPage.getCvvNumberField().getValue());
     }
 }
 
