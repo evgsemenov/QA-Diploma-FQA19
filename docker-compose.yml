@@ -27,19 +27,9 @@ services:
   gate-simulator:
     depends_on:
       - mysql
-    build: .
+    build: ./gate-simulator
     image: gate-simulator
     ports:
       - '9999:9999'
 
-
-#  aqa-shop:
-#    depends_on:
-#      - 'postgres'
-#      - 'mysql'
-#      - 'gate-simulator'
-#    build: .
-#    image: aqa-shop
-#    ports:
-#      - '8080:8080'
 

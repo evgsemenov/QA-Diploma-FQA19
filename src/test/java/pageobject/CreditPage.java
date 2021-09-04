@@ -19,7 +19,7 @@ public class CreditPage {
     private SelenideElement cardNumberField = $(byText("Номер карты")).parent().$(".input__control");
     private SelenideElement monthField = $(byText("Месяц")).parent().$(".input__control");
     private SelenideElement yearField = $(byText("Год")).parent().$(".input__control");
-    private SelenideElement nameField = $(byText("Владелец")).parent().$(".input__control");
+    private SelenideElement cardHolderField = $(byText("Владелец")).parent().$(".input__control");
     private SelenideElement cvvNumberField = $(byText("CVC/CVV")).parent().$(".input__control");
     private SelenideElement nextButton = $(byText("Продолжить"));
     private SelenideElement successNotification = $(".notification_status_ok");
@@ -39,7 +39,7 @@ public class CreditPage {
         cardNumberField.sendKeys(CONTROL + "A", DELETE);
         monthField.sendKeys(CONTROL + "A", DELETE);
         yearField.sendKeys(CONTROL + "A", DELETE);
-        nameField.sendKeys(CONTROL + "A", DELETE);
+        cardHolderField.sendKeys(CONTROL + "A", DELETE);
         cvvNumberField.sendKeys(CONTROL + "A", DELETE);
     }
 
@@ -48,7 +48,7 @@ public class CreditPage {
         cardNumberField.setValue(card);
         monthField.setValue(month);
         yearField.setValue(year);
-        nameField.setValue(name);
+        cardHolderField.setValue(name);
         cvvNumberField.setValue(cvv);
     }
 

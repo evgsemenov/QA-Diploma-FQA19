@@ -1,13 +1,10 @@
 package test_suit;
 
 import com.codeborne.selenide.logevents.SelenideLogger;
-import com.github.javafaker.Faker;
 import data.DataHelper;
 import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.*;
 import pageobject.TourPurchasePage;
-
-import java.util.Locale;
 
 import static com.codeborne.selenide.Selenide.closeWindow;
 import static com.codeborne.selenide.Selenide.open;
@@ -189,8 +186,8 @@ public class UI_Test {
     void shouldNotAllowLatinSymbolsInCardNumberFieldOnPaymentPageTest() {
         var paymentPage = tourPurchasePage.payForTour();
         paymentPage.getCardNumberField().setValue(DataHelper.getRandomLatinSymbols());
-        String expected = "1";
-        assertEquals(expected, paymentPage.getCardNumberField().getText());
+        String expected = "";
+        assertEquals(expected, paymentPage.getCardNumberField().getValue());
     }
 
     @Test
@@ -199,16 +196,241 @@ public class UI_Test {
         var paymentPage = tourPurchasePage.payForTour();
         paymentPage.getCardNumberField().setValue(DataHelper.getRandomCyrillicSymbols());
         String expected = "";
-        assertEquals(expected, paymentPage.getCardNumberField().getText());
+        assertEquals(expected, paymentPage.getCardNumberField().getValue());
     }
 
     @Test
     @DisplayName("Не должен разрешать ввод спецсимволов в поле 'Номер карты' на странице оплаты")
-    void shouldNotAllowSpecialCharactersInCardNumberFieldOnPaymentPageTest() {
-        var paymentPage = tourPurchasePage.payForTour();
-        paymentPage.getCardNumberField().setValue("1!@#$%^&*()_+-~|");
+    void shouldNotAllowSpecialCharactersInCardNumberFieldOnCreditPageTest() {
+        var creditPage = tourPurchasePage.buyWithCredit();
+        creditPage.getCardNumberField().setValue("!@#$%^&*()_+-~|");
         String expected = "";
-        assertEquals(expected, paymentPage.getCardNumberField().getValue());
+        assertEquals(expected, creditPage.getCardNumberField().getValue());
+    }
+
+    @Test
+    @DisplayName("Не должен разрешать ввод латиницы в поле 'Номер карты' на странице оформления кредита")
+    void shouldNotAllowLatinSymbolsInCardNumberFieldOnCreditPageTest() {
+        var creditPage = tourPurchasePage.buyWithCredit();
+        creditPage.getCardNumberField().setValue(DataHelper.getRandomLatinSymbols());
+        String expected = "";
+        assertEquals(expected, creditPage.getCardNumberField().getValue());
+    }
+
+    @Test
+    @DisplayName("Не должен разрешать ввод кириллицы в поле 'Номер карты' на странице оформления кредита")
+    void shouldNotAllowCyrillicSymbolsInCardNumberFieldOnCreditPageTest() {
+        var creditPage = tourPurchasePage.buyWithCredit();
+        creditPage.getCardNumberField().setValue(DataHelper.getRandomCyrillicSymbols());
+        String expected = "";
+        assertEquals(expected, creditPage.getCardNumberField().getValue());
+    }
+
+    @Test
+    @DisplayName("Не должен разрешать ввод спецсимволов в поле 'Номер карты' на странице оформления кредита")
+    void shouldNotAllowSpecialCharactersInCardNumberFieldOnPaymentPageTest() {
+        var creditPage = tourPurchasePage.buyWithCredit();
+        creditPage.getCardNumberField().setValue("!@#$%^&*()_+-~|");
+        String expected = "";
+        assertEquals(expected, creditPage.getCardNumberField().getValue());
+    }
+
+    @Test
+    @DisplayName("Не должен разрешать ввод латиницы в поле 'Месяц' на странице оплаты")
+    void shouldNotAllowLatinSymbolsInMonthFieldOnPaymentPageTest() {
+        var paymentPage = tourPurchasePage.payForTour();
+        paymentPage.getMonthField().setValue(DataHelper.getRandomLatinSymbols());
+        String expected = "";
+        assertEquals(expected, paymentPage.getMonthField().getValue());
+    }
+
+    @Test
+    @DisplayName("Не должен разрешать ввод кириллицы в поле 'Месяц' на странице оплаты")
+    void shouldNotAllowCyrillicSymbolsInMonthFieldOnPaymentPageTest() {
+        var paymentPage = tourPurchasePage.payForTour();
+        paymentPage.getMonthField().setValue(DataHelper.getRandomCyrillicSymbols());
+        String expected = "";
+        assertEquals(expected, paymentPage.getMonthField().getValue());
+    }
+
+    @Test
+    @DisplayName("Не должен разрешать ввод спецсимволов в поле 'Месяц' на странице оплаты")
+    void shouldNotAllowSpecialNumbersInMonthFieldOnPaymentPageTest() {
+        var paymentPage = tourPurchasePage.payForTour();
+        paymentPage.getMonthField().setValue("!@#$%^&*()_+-~|");
+        String expected = "";
+        assertEquals(expected, paymentPage.getMonthField().getValue());
+    }
+
+    @Test
+    @DisplayName("Не должен разрешать ввод латиницы в поле 'Месяц' на странице оформления кредита")
+    void shouldNotAllowLatinSymbolsInMonthFieldOnCreditPageTest() {
+        var creditPage = tourPurchasePage.buyWithCredit();
+        creditPage.getMonthField().setValue(DataHelper.getRandomLatinSymbols());
+        String expected = "";
+        assertEquals(expected, creditPage.getMonthField().getValue());
+    }
+
+    @Test
+    @DisplayName("Не должен разрешать ввод кириллицы в поле 'Месяц' на странице оформления кредита")
+    void shouldNotAllowCyrillicSymbolsInMonthFieldOnCreditPageTest() {
+        var creditPage = tourPurchasePage.buyWithCredit();
+        creditPage.getMonthField().setValue(DataHelper.getRandomCyrillicSymbols());
+        String expected = "";
+        assertEquals(expected, creditPage.getMonthField().getValue());
+    }
+
+    @Test
+    @DisplayName("Не должен разрешать ввод спецсимволов в поле 'Месяц' на странице оформления кредита")
+    void shouldNotAllowSpecialNumbersInMonthFieldOnCreditPageTest() {
+        var creditPage = tourPurchasePage.buyWithCredit();
+        creditPage.getMonthField().setValue("!@#$%^&*()_+-~|");
+        String expected = "";
+        assertEquals(expected, creditPage.getMonthField().getValue());
+    }
+
+    @Test
+    @DisplayName("Не должен разрешать ввод кириллицы в поле 'Год' на странице оплаты")
+    void shouldNotAllowCyrillicSymbolsInYearFieldOnPaymentPageTest() {
+        var paymentPage = tourPurchasePage.payForTour();
+        paymentPage.getYearField().setValue(DataHelper.getRandomCyrillicSymbols());
+        String expected = "";
+        assertEquals(expected, paymentPage.getYearField().getValue());
+    }
+
+    @Test
+    @DisplayName("Не должен разрешать ввод латиницы в поле 'Год' на странице оплаты")
+    void shouldNotAllowLatinZOSymbolsInYearFieldOnPaymentPageTest() {
+        var paymentPage = tourPurchasePage.payForTour();
+        paymentPage.getYearField().setValue(DataHelper.getRandomLatinSymbols());
+        String expected = "";
+        assertEquals(expected, paymentPage.getYearField().getValue());
+    }
+
+    @Test
+    @DisplayName("Не должен разрешать ввод спецсимволов в поле 'Год' на странице оплаты")
+    void shouldNotAllowSpecialCharactersInYearFieldOnPaymentPageTest() {
+        var paymentPage = tourPurchasePage.payForTour();
+        paymentPage.getYearField().setValue("!@#$%^&*()_+-~|");
+        String expected = "";
+        assertEquals(expected, paymentPage.getYearField().getValue());
+    }
+
+    @Test
+    @DisplayName("Не должен разрешать ввод кириллицы в поле 'Год' на странице оформления кредита")
+    void shouldNotAllowCyrillicSymbolsInYearFieldOnCreditPageTest() {
+        var creditPage = tourPurchasePage.buyWithCredit();
+        creditPage.getYearField().setValue(DataHelper.getRandomCyrillicSymbols());
+        String expected = "";
+        assertEquals(expected, creditPage.getYearField().getValue());
+    }
+
+    @Test
+    @DisplayName("Не должен разрешать ввод латиницы в поле 'Год' на странице оформления кредита")
+    void shouldNotAllowLatinZOSymbolsInYearFieldOnCreditPageTest() {
+        var creditPage = tourPurchasePage.buyWithCredit();
+        creditPage.getYearField().setValue(DataHelper.getRandomLatinSymbols());
+        String expected = "";
+        assertEquals(expected, creditPage.getYearField().getValue());
+    }
+
+    @Test
+    @DisplayName("Не должен разрешать ввод спецсимволов в поле 'Год' на странице оформления кредита")
+    void shouldNotAllowSpecialCharactersInYearFieldOnCreditPageTest() {
+        var creditPage = tourPurchasePage.buyWithCredit();
+        creditPage.getYearField().setValue("!@#$%^&*()_+-~|");
+        String expected = "";
+        assertEquals(expected, creditPage.getYearField().getValue());
+    }
+
+    @Test
+    @DisplayName("Не должен разрешать ввод цифр в поле 'Владелец' на странице оплаты")
+    void shouldNotAllowNumbersInCardHolderFieldOnPaymentPageTest() {
+        var paymentPage = tourPurchasePage.payForTour();
+        paymentPage.getCardHolderField().setValue("0123456789");
+        String expected = "";
+        assertEquals(expected, paymentPage.getCardHolderField().getValue());
+    }
+
+    @Test
+    @DisplayName("Не должен разрешать ввод спецсимволов в поле 'Владелец' на странице оплаты")
+    void shouldNotAllowSpecialNumbersInCardHolderFieldOnPaymentPageTest() {
+        var paymentPage = tourPurchasePage.payForTour();
+        paymentPage.getCardHolderField().setValue("!@#$%^&*()_+-~|");
+        String expected = "";
+        assertEquals(expected, paymentPage.getCardHolderField().getValue());
+    }
+
+    @Test
+    @DisplayName("Не должен разрешать ввод цифр в поле 'Владелец' на странице оформления кредита")
+    void shouldNotAllowNumbersInCardHolderFieldOnCreditPageTest() {
+        var creditPage = tourPurchasePage.buyWithCredit();
+        creditPage.getCardHolderField().setValue("0123456789");
+        String expected = "";
+        assertEquals(expected, creditPage.getCardHolderField().getValue());
+    }
+
+    @Test
+    @DisplayName("Не должен разрешать ввод спецсимволов в поле 'Владелец' на странице оформления кредита")
+    void shouldNotAllowSpecialNumbersInCardHolderFieldOnCreditPageTest() {
+        var creditPage = tourPurchasePage.buyWithCredit();
+        creditPage.getCardHolderField().setValue("!@#$%^&*()_+-~|");
+        String expected = "";
+        assertEquals(expected, creditPage.getCardHolderField().getValue());
+    }
+
+    @Test
+    @DisplayName("Не должен разрешать ввод кириллицы в поле 'CVC/CVV' на странице оплаты")
+    void shouldNotAllowCyrillicSymbolsInCvvNumberFieldOnPaymentPageTest() {
+        var paymentPage = tourPurchasePage.payForTour();
+        paymentPage.getCvvNumberField().setValue(DataHelper.getRandomCyrillicSymbols());
+        String expected = "";
+        assertEquals(expected, paymentPage.getCvvNumberField().getValue());
+    }
+
+    @Test
+    @DisplayName("Не должен разрешать ввод латиницы в поле 'CVC/CVV' на странице оплаты")
+    void shouldNotAllowLatinSymbolsInCvvNumberFieldOnPaymentPageTest() {
+        var paymentPage = tourPurchasePage.payForTour();
+        paymentPage.getCvvNumberField().setValue(DataHelper.getRandomLatinSymbols());
+        String expected = "";
+        assertEquals(expected, paymentPage.getCvvNumberField().getValue());
+    }
+
+    @Test
+    @DisplayName("Не должен разрешать ввод спецсимволов в поле 'CVC/CVV' на странице оплаты")
+    void shouldNotAllowSpecialNumbersInCvvNumberFieldOnPaymentPageTest() {
+        var paymentPage = tourPurchasePage.payForTour();
+        paymentPage.getCvvNumberField().setValue("!@#$%^&*()_+-~|");
+        String expected = "";
+        assertEquals(expected, paymentPage.getCvvNumberField().getValue());
+    }
+
+    @Test
+    @DisplayName("Не должен разрешать ввод кириллицы в поле 'CVC/CVV' на странице оформления кредита")
+    void shouldNotAllowCyrillicSymbolsInCvvNumberFieldOnCreditPageTest() {
+        var creditPage = tourPurchasePage.buyWithCredit();
+        creditPage.getCvvNumberField().setValue(DataHelper.getRandomCyrillicSymbols());
+        String expected = "";
+        assertEquals(expected, creditPage.getCvvNumberField().getValue());
+    }
+
+    @Test
+    @DisplayName("Не должен разрешать ввод латиницы в поле 'CVC/CVV' на странице оформления кредита")
+    void shouldNotAllowLatinSymbolsInCvvNumberFieldOnCreditPageTest() {
+        var creditPage = tourPurchasePage.buyWithCredit();
+        creditPage.getCvvNumberField().setValue(DataHelper.getRandomLatinSymbols());
+        String expected = "";
+        assertEquals(expected, creditPage.getCvvNumberField().getValue());
+    }
+
+    @Test
+    @DisplayName("Не должен разрешать ввод спецсимволов в поле 'CVC/CVV' на странице оформления кредита")
+    void shouldNotAllowSpecialNumbersInCvvNumberFieldOnCreditPageTest() {
+        var creditPage = tourPurchasePage.buyWithCredit();
+        creditPage.getCvvNumberField().setValue("!@#$%^&*()_+-~|");
+        String expected = "";
+        assertEquals(expected, creditPage.getCvvNumberField().getValue());
     }
 }
 
