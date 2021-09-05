@@ -1,4 +1,4 @@
-FROM node:latest
+FROM node:erbium-alpine3.14
 WORKDIR /app
 COPY . .
 RUN npm install
