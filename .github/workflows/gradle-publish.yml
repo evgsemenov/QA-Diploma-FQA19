@@ -19,7 +19,7 @@ jobs:
       - name: sleep
         uses: jakejarvis/wait-action@master
         with:
-        time: '60s'
+          time: '30s'
       - name: Run SUT
         run: java -Dspring.datasource.url=jdbc:postgresql://localhost:5432/db -jar artifacts/aqa-shop.jar &
       - name: Grant execute permission for gradlew
