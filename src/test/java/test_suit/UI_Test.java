@@ -65,9 +65,9 @@ public class UI_Test {
     @Test
     @DisplayName("Должен отправить заполненную форму и отклонить операцию по заблокированной карте со страницы оформления кредита")
     void shouldGetErrorIfBuyTourWithDeclinedCardOnCreditPageTest() {
-        var paymentPage = tourPurchasePage.payForTour();
+        var creditPage = tourPurchasePage.buyWithCredit();
         var declinedPayment = DataHelper.declinedPayment(DataHelper.randomPlusMonth());
-        paymentPage.unsuccessfulSendingForm(declinedPayment.getCardNumber(), declinedPayment.getMonth(),
+        creditPage.unsuccessfulSendingForm(declinedPayment.getCardNumber(), declinedPayment.getMonth(),
                 declinedPayment.getYear(), declinedPayment.getCardHolder(), declinedPayment.getCvv());
     }
 
@@ -83,6 +83,193 @@ public class UI_Test {
     void shouldSwitchFromCreditPageToPaymentPageTest() {
         var creditPage = tourPurchasePage.buyWithCredit();
         var paymentPage = creditPage.payForTour();
+    }
+
+    @Test
+    @DisplayName("Должен успешно отправить форму и одобрить операцию по активной карте со сроком истечения 59 месяцев")
+    void shouldSuccessBuyTourWith59MonthExpiredCardOnPaymentPageTest() {
+        var paymentPage = tourPurchasePage.payForTour();
+        var approvedPayment = DataHelper.approvedPayment(59);
+        paymentPage.successfulSendingForm(approvedPayment.getCardNumber(), approvedPayment.getMonth(),
+                approvedPayment.getYear(), approvedPayment.getCardHolder(), approvedPayment.getCvv());
+    }
+    @Test
+    @DisplayName("Должен успешно отправить форму и одобрить операцию по активной карте со сроком истечения 60 месяцев")
+    void shouldSuccessBuyTourWith60MonthExpiredCardOnPaymentPageTest() {
+        var paymentPage = tourPurchasePage.payForTour();
+        var approvedPayment = DataHelper.approvedPayment(60);
+        paymentPage.successfulSendingForm(approvedPayment.getCardNumber(), approvedPayment.getMonth(),
+                approvedPayment.getYear(), approvedPayment.getCardHolder(), approvedPayment.getCvv());
+    }
+
+    @Test
+    @DisplayName("Должен показать ошибку при оформлении покупки по активной карте со сроком истечения более 5 лет")
+    void shouldGetErrorIfBuyTourWith61MonthExpiredCardOnPaymentPageTest() {
+        var paymentPage = tourPurchasePage.payForTour();
+        var approvedPayment = DataHelper.approvedPayment(61);
+        paymentPage.successfulSendingForm(approvedPayment.getCardNumber(), approvedPayment.getMonth(),
+                approvedPayment.getYear(), approvedPayment.getCardHolder(), approvedPayment.getCvv());
+        paymentPage.sendInvalidForm();
+    }
+
+    @Test
+    @DisplayName("Должен успешно отправить форму и одобрить операцию по активной карте со сроком истечения 1 месяц")
+    void shouldSuccessBuyTourWithOneMonthExpiredCardOnPaymentPageTest() {
+        var paymentPage = tourPurchasePage.payForTour();
+        var approvedPayment = DataHelper.approvedPayment(1);
+        paymentPage.successfulSendingForm(approvedPayment.getCardNumber(), approvedPayment.getMonth(),
+                approvedPayment.getYear(), approvedPayment.getCardHolder(), approvedPayment.getCvv());
+    }
+
+    @Test
+    @DisplayName("Должен успешно отправить форму и одобрить операцию по активной карте со сроком истечения в этом месяце")
+    void shouldSuccessBuyTourWithZeroMonthExpiredCardOnPaymentPageTest() {
+        var paymentPage = tourPurchasePage.payForTour();
+        var approvedPayment = DataHelper.approvedPayment(0);
+        paymentPage.successfulSendingForm(approvedPayment.getCardNumber(), approvedPayment.getMonth(),
+                approvedPayment.getYear(), approvedPayment.getCardHolder(), approvedPayment.getCvv());
+    }
+
+    @Test
+    @DisplayName("Должен показать ошибку при оформлении покупки по активной карте со сроком истечения более 5 лет")
+    void shouldGetErrorIfBuyTourWithExpiredCardOnPaymentPageTest() {
+        var paymentPage = tourPurchasePage.payForTour();
+        var approvedPayment = DataHelper.approvedPayment(-1);
+        paymentPage.fillPaymentInfo(approvedPayment.getCardNumber(), approvedPayment.getMonth(), approvedPayment.getYear(),
+                approvedPayment.getCardHolder(), approvedPayment.getCvv());
+        paymentPage.sendInvalidForm();
+    }
+
+    @Test
+    @DisplayName("Должен успешно отправить форму и одобрить кредит по активной карте со сроком истечения 59 месяцев")
+    void shouldSuccessBuyTourWith59MonthExpiredCardOnCreditPageTest() {
+        var creditPage = tourPurchasePage.buyWithCredit();
+        var approvedPayment = DataHelper.approvedPayment(59);
+        creditPage.successfulSendingForm(approvedPayment.getCardNumber(), approvedPayment.getMonth(),
+                approvedPayment.getYear(), approvedPayment.getCardHolder(), approvedPayment.getCvv());
+    }
+
+    @Test
+    @DisplayName("Должен успешно отправить форму и одобрить кредит по активной карте со сроком истечения 60 месяцев")
+    void shouldSuccessBuyTourWith60MonthExpiredCardOnCreditPageTest() {
+        var creditPage = tourPurchasePage.buyWithCredit();
+        var approvedPayment = DataHelper.approvedPayment(60);
+        creditPage.successfulSendingForm(approvedPayment.getCardNumber(), approvedPayment.getMonth(),
+                approvedPayment.getYear(), approvedPayment.getCardHolder(), approvedPayment.getCvv());
+    }
+
+    @Test
+    @DisplayName("Должен показать ошибку при оформлении покупки по активной карте со сроком истечения более 5 лет")
+    void shouldGetErrorIfBuyTourWith61MonthExpiredCardOnCreditPageTest() {
+        var creditPage = tourPurchasePage.buyWithCredit();
+        var approvedPayment = DataHelper.approvedPayment(61);
+        creditPage.fillPaymentInfo(approvedPayment.getCardNumber(), approvedPayment.getMonth(), approvedPayment.getYear(),
+                approvedPayment.getCardHolder(), approvedPayment.getCvv());
+        creditPage.sendInvalidForm();
+    }
+
+    @Test
+    @DisplayName("Должен успешно отправить форму и одобрить кредит по активной карте со сроком истечения 1 месяц")
+    void shouldSuccessBuyTourWithOneMonthExpiredCardOnCreditPageTest() {
+        var creditPage = tourPurchasePage.buyWithCredit();
+        var approvedPayment = DataHelper.approvedPayment(1);
+        creditPage.successfulSendingForm(approvedPayment.getCardNumber(), approvedPayment.getMonth(),
+                approvedPayment.getYear(), approvedPayment.getCardHolder(), approvedPayment.getCvv());
+    }
+
+    @Test
+    @DisplayName("Должен успешно отправить форму и одобрить кредит по активной карте со сроком истечения в этом месяце")
+    void shouldSuccessBuyTourWithZeroMonthExpiredCardOnCreditPageTest() {
+        var creditPage = tourPurchasePage.buyWithCredit();
+        var approvedPayment = DataHelper.approvedPayment(0);
+        creditPage.successfulSendingForm(approvedPayment.getCardNumber(), approvedPayment.getMonth(),
+                approvedPayment.getYear(), approvedPayment.getCardHolder(), approvedPayment.getCvv());
+    }
+
+    @Test
+    @DisplayName("Должен показать ошибку при оформлении кредита по активной карте со сроком истечения более 5 лет")
+    void shouldGetErrorIfBuyTourWithExpiredCardOnCreditPageTest() {
+        var creditPage = tourPurchasePage.buyWithCredit();
+        var approvedPayment = DataHelper.approvedPayment(-1);
+        creditPage.fillPaymentInfo(approvedPayment.getCardNumber(), approvedPayment.getMonth(), approvedPayment.getYear(),
+                approvedPayment.getCardHolder(), approvedPayment.getCvv());
+        creditPage.sendInvalidForm();
+    }
+
+    @Test
+    @DisplayName("Должен успешно отправить форму и одобрить операцию по активной карте с указанием 01 месяца")
+    void shouldSuccessBuyTourWith01MonthValueOnPaymentPageTest() {
+        var paymentPage = tourPurchasePage.payForTour();
+        var approvedPayment = DataHelper.approvedPayment(24);
+        paymentPage.successfulSendingForm(approvedPayment.getCardNumber(), "01",
+                approvedPayment.getYear(), approvedPayment.getCardHolder(), approvedPayment.getCvv());
+    }
+
+    @Test
+    @DisplayName("Должен показать ошибку при оформлении покупки по активной карте с указанием 00 месяца")
+    void shouldGetErrorIfBuyTourWithZeroMonthValueOnPaymentPageTest() {
+        var paymentPage = tourPurchasePage.payForTour();
+        var approvedPayment = DataHelper.approvedPayment(24);
+        paymentPage.fillPaymentInfo(approvedPayment.getCardNumber(), "00",
+                approvedPayment.getYear(), approvedPayment.getCardHolder(), approvedPayment.getCvv());
+        paymentPage.sendInvalidForm();
+    }
+
+    @Test
+    @DisplayName("Должен успешно отправить форму и одобрить кредит по активной карте с указанием 12 месяца")
+    void shouldSuccessBuyTourWith12MonthValueOnPaymentPageTest() {
+        var paymentPage = tourPurchasePage.payForTour();
+        var approvedPayment = DataHelper.approvedPayment(24);
+        paymentPage.successfulSendingForm(approvedPayment.getCardNumber(), "12",
+                approvedPayment.getYear(), approvedPayment.getCardHolder(), approvedPayment.getCvv());
+    }
+
+    @Test
+    @DisplayName("Должен показать ошибку при оформлении покупки по активной карте с указанием 13 месяца")
+    void shouldGetErrorIfBuyTourWith13MonthValueOnPaymentPageTest() {
+        var paymentPage = tourPurchasePage.payForTour();
+        var approvedPayment = DataHelper.approvedPayment(24);
+        paymentPage.fillPaymentInfo(approvedPayment.getCardNumber(), "13",
+                approvedPayment.getYear(), approvedPayment.getCardHolder(), approvedPayment.getCvv());
+        paymentPage.sendInvalidForm();
+    }
+
+    @Test
+    @DisplayName("Должен успешно отправить форму и одобрить кредит по активной карте с указанием 01 месяца")
+    void shouldSuccessBuyTourWith01MonthValueOnCreditPageTest() {
+        var creditPage = tourPurchasePage.buyWithCredit();
+        var approvedPayment = DataHelper.approvedPayment(24);
+        creditPage.successfulSendingForm(approvedPayment.getCardNumber(), "01",
+                approvedPayment.getYear(), approvedPayment.getCardHolder(), approvedPayment.getCvv());
+    }
+
+    @Test
+    @DisplayName("Должен показать ошибку при оформлении кредита по активной карте с указанием 00 месяца")
+    void shouldGetErrorIfBuyTourWithZeroMonthValueOnCreditPageTest() {
+        var creditPage = tourPurchasePage.buyWithCredit();
+        var approvedPayment = DataHelper.approvedPayment(24);
+        creditPage.fillPaymentInfo(approvedPayment.getCardNumber(), "00",
+                approvedPayment.getYear(), approvedPayment.getCardHolder(), approvedPayment.getCvv());
+        creditPage.sendInvalidForm();
+    }
+
+    @Test
+    @DisplayName("Должен успешно отправить форму и одобрить кредит по активной карте с указанием 12 месяца")
+    void shouldSuccessBuyTourWith12MonthValueOnCreditPageTest() {
+        var creditPage = tourPurchasePage.buyWithCredit();
+        var approvedPayment = DataHelper.approvedPayment(24);
+        creditPage.successfulSendingForm(approvedPayment.getCardNumber(), "12",
+                approvedPayment.getYear(), approvedPayment.getCardHolder(), approvedPayment.getCvv());
+    }
+
+    @Test
+    @DisplayName("Должен показать ошибку при оформлении кредита по активной карте с указанием 13 месяца")
+    void shouldGetErrorIfBuyTourWith13MonthValueOnCreditPageTest() {
+        var creditPage = tourPurchasePage.buyWithCredit();
+        var approvedPayment = DataHelper.approvedPayment(24);
+        creditPage.fillPaymentInfo(approvedPayment.getCardNumber(), "13",
+                approvedPayment.getYear(), approvedPayment.getCardHolder(), approvedPayment.getCvv());
+        creditPage.sendInvalidForm();
     }
 
     @Test
