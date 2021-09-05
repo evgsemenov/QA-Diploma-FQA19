@@ -59,6 +59,13 @@ public class CreditPage {
                 shouldHave(exactText("Успешно\n" + "Операция одобрена Банком."));
     }
 
+    public void unsuccessfulSendingForm (String card, String month, String year, String name, String cvv) {
+        fillPaymentInfo(card, month, year, name, cvv);
+        nextButton.click();
+        successNotification.shouldBe(visible, Duration.ofSeconds(15)).
+                shouldHave(exactText("Ошибка\n" + "Ошибка! Банк отказал в проведении операции."));
+    }
+
     public void sendClearForm() {
         clearField();
         nextButton.click();

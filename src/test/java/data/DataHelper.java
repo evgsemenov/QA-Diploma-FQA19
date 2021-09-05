@@ -31,6 +31,11 @@ public class DataHelper {
                 getRandomName(), getRandomCVV());
     }
 
+    public static PaymentInfo getDeclinePayment(int plusMonth) {
+        return new PaymentInfo(declinedCard, expiryMonth(plusMonth), expiryYear(plusMonth),
+                getRandomName(), getRandomCVV());
+    }
+
     public static LocalDate expiryDate(int plusMonth) {
         var expiryDate = LocalDate.now().plusMonths(plusMonth);
         return expiryDate;

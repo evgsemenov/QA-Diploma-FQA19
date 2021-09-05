@@ -36,8 +36,8 @@ public class UI_Test {
     }
 
     @Test
-    @DisplayName("Должен успешно отправить форму со страницы оплаты")
-    void shouldSuccessBuyTourOnPaymentPageTest() {
+    @DisplayName("Должен отправить заполненную форму и одобрить операцию по действующей карте со страницы оплаты")
+    void shouldSuccessBuyTourWithApprovedCardOnPaymentPageTest() {
         var paymentPage = tourPurchasePage.payForTour();
         var approvedPayment = DataHelper.getApprovedPayment(DataHelper.randomPlusMonth());
         paymentPage.successfulSendingForm(approvedPayment.getCardNumber(), approvedPayment.getMonth(),
@@ -45,12 +45,30 @@ public class UI_Test {
     }
 
     @Test
-    @DisplayName("Должен успешно отправить форму со страницы оформления кредита")
-    void shouldSuccessBuyTourOnCreditPageTest() {
+    @DisplayName("Должен отправить заполненную форму и одобрить операцию по действующей карте со страницы оформления кредита")
+    void shouldSuccessBuyTourWithApprovedCardOnCreditPageTest() {
         var creditPage = tourPurchasePage.buyWithCredit();
         var approvedPayment = DataHelper.getApprovedPayment(DataHelper.randomPlusMonth());
         creditPage.successfulSendingForm(approvedPayment.getCardNumber(), approvedPayment.getMonth(),
                 approvedPayment.getYear(), approvedPayment.getCardHolder(), approvedPayment.getCvv());
+    }
+
+    @Test
+    @DisplayName("Должен отправить заполненную форму и отклонить операцию по заблокированной карте со страницы оплаты")
+    void shouldGetErrorIfBuyTourWithDeclinedCardOnPaymentPageTest() {
+        var paymentPage = tourPurchasePage.payForTour();
+        var declinedPayment = DataHelper.getDeclinePayment(DataHelper.randomPlusMonth());
+        paymentPage.unsuccessfulSendingForm(declinedPayment.getCardNumber(), declinedPayment.getMonth(),
+                declinedPayment.getYear(), declinedPayment.getCardHolder(), declinedPayment.getCvv());
+    }
+
+    @Test
+    @DisplayName("Должен отправить заполненную форму и отклонить операцию по заблокированной карте со страницы оформления кредита")
+    void shouldGetErrorIfBuyTourWithDeclinedCardOnCreditPageTest() {
+        var paymentPage = tourPurchasePage.payForTour();
+        var declinedPayment = DataHelper.getDeclinePayment(DataHelper.randomPlusMonth());
+        paymentPage.unsuccessfulSendingForm(declinedPayment.getCardNumber(), declinedPayment.getMonth(),
+                declinedPayment.getYear(), declinedPayment.getCardHolder(), declinedPayment.getCvv());
     }
 
     @Test
