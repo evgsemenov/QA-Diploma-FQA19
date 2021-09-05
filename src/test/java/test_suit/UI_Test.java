@@ -39,7 +39,7 @@ public class UI_Test {
     @DisplayName("Должен отправить заполненную форму и одобрить операцию по действующей карте со страницы оплаты")
     void shouldSuccessBuyTourWithApprovedCardOnPaymentPageTest() {
         var paymentPage = tourPurchasePage.payForTour();
-        var approvedPayment = DataHelper.getApprovedPayment(DataHelper.randomPlusMonth());
+        var approvedPayment = DataHelper.approvedPayment(DataHelper.randomPlusMonth());
         paymentPage.successfulSendingForm(approvedPayment.getCardNumber(), approvedPayment.getMonth(),
                 approvedPayment.getYear(), approvedPayment.getCardHolder(), approvedPayment.getCvv());
     }
@@ -48,7 +48,7 @@ public class UI_Test {
     @DisplayName("Должен отправить заполненную форму и одобрить операцию по действующей карте со страницы оформления кредита")
     void shouldSuccessBuyTourWithApprovedCardOnCreditPageTest() {
         var creditPage = tourPurchasePage.buyWithCredit();
-        var approvedPayment = DataHelper.getApprovedPayment(DataHelper.randomPlusMonth());
+        var approvedPayment = DataHelper.approvedPayment(DataHelper.randomPlusMonth());
         creditPage.successfulSendingForm(approvedPayment.getCardNumber(), approvedPayment.getMonth(),
                 approvedPayment.getYear(), approvedPayment.getCardHolder(), approvedPayment.getCvv());
     }
@@ -57,7 +57,7 @@ public class UI_Test {
     @DisplayName("Должен отправить заполненную форму и отклонить операцию по заблокированной карте со страницы оплаты")
     void shouldGetErrorIfBuyTourWithDeclinedCardOnPaymentPageTest() {
         var paymentPage = tourPurchasePage.payForTour();
-        var declinedPayment = DataHelper.getDeclinePayment(DataHelper.randomPlusMonth());
+        var declinedPayment = DataHelper.declinedPayment(DataHelper.randomPlusMonth());
         paymentPage.unsuccessfulSendingForm(declinedPayment.getCardNumber(), declinedPayment.getMonth(),
                 declinedPayment.getYear(), declinedPayment.getCardHolder(), declinedPayment.getCvv());
     }
@@ -66,7 +66,7 @@ public class UI_Test {
     @DisplayName("Должен отправить заполненную форму и отклонить операцию по заблокированной карте со страницы оформления кредита")
     void shouldGetErrorIfBuyTourWithDeclinedCardOnCreditPageTest() {
         var paymentPage = tourPurchasePage.payForTour();
-        var declinedPayment = DataHelper.getDeclinePayment(DataHelper.randomPlusMonth());
+        var declinedPayment = DataHelper.declinedPayment(DataHelper.randomPlusMonth());
         paymentPage.unsuccessfulSendingForm(declinedPayment.getCardNumber(), declinedPayment.getMonth(),
                 declinedPayment.getYear(), declinedPayment.getCardHolder(), declinedPayment.getCvv());
     }
@@ -103,7 +103,7 @@ public class UI_Test {
     @DisplayName("Должен показывать ошибку при отправке пустого поля 'Номер карты' на странице оплаты")
     void shouldRequireCardNumberOnPaymentPageTest() {
         var paymentPage = tourPurchasePage.payForTour();
-        var approvedPayment = DataHelper.getApprovedPayment(DataHelper.randomPlusMonth());
+        var approvedPayment = DataHelper.approvedPayment(DataHelper.randomPlusMonth());
         paymentPage.fillPaymentInfo("", approvedPayment.getMonth(),
                 approvedPayment.getYear(), approvedPayment.getCardHolder(), approvedPayment.getCvv());
         paymentPage.sendInvalidForm();
@@ -113,7 +113,7 @@ public class UI_Test {
     @DisplayName("Должен показывать ошибку при отправке пустого поля 'Месяц' на странице оплаты")
     void shouldRequireMonthOnPaymentPageTest() {
         var paymentPage = tourPurchasePage.payForTour();
-        var approvedPayment = DataHelper.getApprovedPayment(DataHelper.randomPlusMonth());
+        var approvedPayment = DataHelper.approvedPayment(DataHelper.randomPlusMonth());
         paymentPage.fillPaymentInfo(approvedPayment.getCardNumber(), "",
                 approvedPayment.getYear(), approvedPayment.getCardHolder(), approvedPayment.getCvv());
         paymentPage.sendInvalidForm();
@@ -123,7 +123,7 @@ public class UI_Test {
     @DisplayName("Должен показывать ошибку при отправке пустого поля 'Год' на странице оплаты")
     void shouldRequireYearOnPaymentPageTest() {
         var paymentPage = tourPurchasePage.payForTour();
-        var approvedPayment = DataHelper.getApprovedPayment(DataHelper.randomPlusMonth());
+        var approvedPayment = DataHelper.approvedPayment(DataHelper.randomPlusMonth());
         paymentPage.fillPaymentInfo(approvedPayment.getCardNumber(), approvedPayment.getMonth(),
                 "", approvedPayment.getCardHolder(), approvedPayment.getCvv());
         paymentPage.sendInvalidForm();
@@ -133,7 +133,7 @@ public class UI_Test {
     @DisplayName("Должен показывать ошибку при отправке пустого поля 'Владелец' на странице оплаты")
     void shouldRequireCardHolderOnPaymentPageTest() {
         var paymentPage = tourPurchasePage.payForTour();
-        var approvedPayment = DataHelper.getApprovedPayment(DataHelper.randomPlusMonth());
+        var approvedPayment = DataHelper.approvedPayment(DataHelper.randomPlusMonth());
         paymentPage.fillPaymentInfo(approvedPayment.getCardNumber(), approvedPayment.getMonth(),
                 approvedPayment.getYear(), "", approvedPayment.getCvv());
         paymentPage.sendInvalidForm();
@@ -143,7 +143,7 @@ public class UI_Test {
     @DisplayName("Должен показывать ошибку при отправке пустого поля 'CVC/CVV' на странице оплаты")
     void shouldRequireCvvOnPaymentPageTest() {
         var paymentPage = tourPurchasePage.payForTour();
-        var approvedPayment = DataHelper.getApprovedPayment(DataHelper.randomPlusMonth());
+        var approvedPayment = DataHelper.approvedPayment(DataHelper.randomPlusMonth());
         paymentPage.fillPaymentInfo(approvedPayment.getCardNumber(), approvedPayment.getMonth(),
                 approvedPayment.getYear(), approvedPayment.getCardHolder(), "");
         paymentPage.sendInvalidForm();
@@ -153,7 +153,7 @@ public class UI_Test {
     @DisplayName("Должен показывать ошибку при отправке пустого поля 'Номер карты' на странице оформления кредита")
     void shouldRequireCardNumberOnCreditPageTest() {
         var creditPage = tourPurchasePage.buyWithCredit();
-        var approvedPayment = DataHelper.getApprovedPayment(DataHelper.randomPlusMonth());
+        var approvedPayment = DataHelper.approvedPayment(DataHelper.randomPlusMonth());
         creditPage.fillPaymentInfo("", approvedPayment.getMonth(),
                 approvedPayment.getYear(), approvedPayment.getCardHolder(), approvedPayment.getCvv());
         creditPage.sendInvalidForm();
@@ -163,7 +163,7 @@ public class UI_Test {
     @DisplayName("Должен показывать ошибку при отправке пустого поля 'Месяц' на странице оформления кредита")
     void shouldRequireMonthOnCreditPageTest() {
         var creditPage = tourPurchasePage.buyWithCredit();
-        var approvedPayment = DataHelper.getApprovedPayment(DataHelper.randomPlusMonth());
+        var approvedPayment = DataHelper.approvedPayment(DataHelper.randomPlusMonth());
         creditPage.fillPaymentInfo(approvedPayment.getCardNumber(), "",
                 approvedPayment.getYear(), approvedPayment.getCardHolder(), approvedPayment.getCvv());
         creditPage.sendInvalidForm();
@@ -173,7 +173,7 @@ public class UI_Test {
     @DisplayName("Должен показывать ошибку при отправке пустого поля 'Год' на странице оформления кредита")
     void shouldRequireYearOnCreditPageTest() {
         var creditPage = tourPurchasePage.buyWithCredit();
-        var approvedPayment = DataHelper.getApprovedPayment(DataHelper.randomPlusMonth());
+        var approvedPayment = DataHelper.approvedPayment(DataHelper.randomPlusMonth());
         creditPage.fillPaymentInfo(approvedPayment.getCardNumber(), approvedPayment.getMonth(),
                 "", approvedPayment.getCardHolder(), approvedPayment.getCvv());
         creditPage.sendInvalidForm();
@@ -183,7 +183,7 @@ public class UI_Test {
     @DisplayName("Должен показывать ошибку при отправке пустого поля 'Владелец' на странице оформления кредита")
     void shouldRequireCardHolderOnCreditPageTest() {
         var creditPage = tourPurchasePage.buyWithCredit();
-        var approvedPayment = DataHelper.getApprovedPayment(DataHelper.randomPlusMonth());
+        var approvedPayment = DataHelper.approvedPayment(DataHelper.randomPlusMonth());
         creditPage.fillPaymentInfo(approvedPayment.getCardNumber(), approvedPayment.getMonth(),
                 approvedPayment.getYear(), "", approvedPayment.getCvv());
         creditPage.sendInvalidForm();
@@ -193,7 +193,7 @@ public class UI_Test {
     @DisplayName("Должен показывать ошибку при отправке пустого поля 'CVC/CVV' на странице оформления кредита")
     void shouldRequireCvvOnCreditPageTest() {
         var creditPage = tourPurchasePage.buyWithCredit();
-        var approvedPayment = DataHelper.getApprovedPayment(DataHelper.randomPlusMonth());
+        var approvedPayment = DataHelper.approvedPayment(DataHelper.randomPlusMonth());
         creditPage.fillPaymentInfo(approvedPayment.getCardNumber(), approvedPayment.getMonth(),
                 approvedPayment.getYear(), approvedPayment.getCardHolder(), "");
         creditPage.sendInvalidForm();

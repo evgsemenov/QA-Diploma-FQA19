@@ -26,12 +26,12 @@ public class DataHelper {
         private String cvv;
     }
 
-    public static PaymentInfo getApprovedPayment(int plusMonth) {
+    public static PaymentInfo approvedPayment(int plusMonth) {
         return new PaymentInfo(approvedCard, expiryMonth(plusMonth), expiryYear(plusMonth),
                 getRandomName(), getRandomCVV());
     }
 
-    public static PaymentInfo getDeclinePayment(int plusMonth) {
+    public static PaymentInfo declinedPayment(int plusMonth) {
         return new PaymentInfo(declinedCard, expiryMonth(plusMonth), expiryYear(plusMonth),
                 getRandomName(), getRandomCVV());
     }
