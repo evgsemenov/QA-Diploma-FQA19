@@ -6,21 +6,14 @@ name: Gradle Package
 on: [push]
 
 jobs:
-#   setup:
-#     runs-on: ubuntu-latest
-#     steps:
-#     - name: build gate-simulator image    
-#       run: docker build -t node-app:1.0 gate-simulator 
-    
-  build:
-#     needs: setup
+  environment :
     runs-on: ubuntu-latest
     steps:
-    - name: startup postgres and mysql
+    - name: run containers
       run: docker-compose up -d
- 
-  run:
-    needs: build  
+
+  build:
+    needs: environment
     runs-on: ubuntu-latest
     steps: 
     - uses: actions/checkout@v2
@@ -29,8 +22,8 @@ jobs:
       with:
         java-version: '11'
         distribution: 'adopt'
-    - name: Run aqa-shop.jar &  
-      run: java -jar ./artifacts/aqa-shop.jar &        
+    - name: Run SUT
+      run: java -Dspring.datasource.url=jdbc:postgresql://localhost:5432/db -jar artifacts/aqa-shop.jar &
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
     - name: Build with Gradle
