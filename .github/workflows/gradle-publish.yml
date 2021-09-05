@@ -9,6 +9,10 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
+      - name: install docker-compose
+        run: sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+      - name: apply executable permissions
+        run: sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
       - name: Build the stack
         run: docker-compose up -d
       - name: Set up JDK 11
