@@ -16,8 +16,6 @@ public class DataHelper {
     private static final String approvedCard = "4444 4444 4444 4441";
     private static final String declinedCard = "4444 4444 4444 4442";
     private static final Faker fakerEn = new Faker(new Locale("en-US"));
-    private static final Faker fakerRu = new Faker(new Locale("ru"));
-    private static final LocalDate localDate = LocalDate.now();
 
     @Value
     public static class PaymentInfo {
@@ -28,13 +26,18 @@ public class DataHelper {
         private String cvv;
     }
 
-    public static PaymentInfo getApprovedPayment(int plusMonth) {
+    public static PaymentInfo approvedPayment(int plusMonth) {
         return new PaymentInfo(approvedCard, expiryMonth(plusMonth), expiryYear(plusMonth),
                 getRandomName(), getRandomCVV());
     }
 
+    public static PaymentInfo declinedPayment(int plusMonth) {
+        return new PaymentInfo(declinedCard, expiryMonth(plusMonth), expiryYear(plusMonth),
+                getRandomName(), getRandomCVV());
+    }
+
     public static LocalDate expiryDate(int plusMonth) {
-        var expiryDate = localDate.plusMonths(plusMonth);
+        var expiryDate = LocalDate.now().plusMonths(plusMonth);
         return expiryDate;
     }
 
@@ -75,7 +78,8 @@ public class DataHelper {
     }
 
     public static String getRandomCyrillicSymbols() {
-        String cyrillicSymbols = fakerRu.bothify("??????????????????");
+        Faker fakerRu = new Faker(new Locale("ru"));
+        String cyrillicSymbols = fakerRu.name().firstName();
         return cyrillicSymbols;
     }
 }
