@@ -10,8 +10,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: run containers
-        run: docker-compose -f docker-compose.yml up --build -d
+      - name: Build the stack
+        run: docker-compose up -d
 
       - name: setup
       - name: Set up JDK 11
