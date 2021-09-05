@@ -29,4 +29,3 @@ services:
     image: gate-simulator
     ports:
       - '9999:9999'
-
