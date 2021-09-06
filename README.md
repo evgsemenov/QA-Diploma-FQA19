@@ -25,6 +25,13 @@
 - При интеграции с MySQL: `gradlew -DdbUrl=jdbc:mysql://localhost:3306/db clean test`
 
 По завершении тестового прогона можно сформировать отчеты Allure командой `gradlew allureServe`
+Отчет Allure располагается в каталоге ./build/reports/allure-report
+
+По завершении тестирования сворачивание контейнеров Docker осуществляется командой `docker-compose down`
+
+Ссылки на документацию и отчеты:  in progress
+ 
+
 
 
   
