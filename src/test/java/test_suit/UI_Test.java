@@ -1,10 +1,10 @@
 package test_suit;
 
 import com.codeborne.selenide.logevents.SelenideLogger;
-import data.DataHelper;
 import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.*;
 import pageobject.TourPurchasePage;
+import tools.DataHelper;
 
 import static com.codeborne.selenide.Selenide.closeWindow;
 import static com.codeborne.selenide.Selenide.open;
