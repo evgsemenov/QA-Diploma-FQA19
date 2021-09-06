@@ -25,6 +25,7 @@ public class CreditPage {
     private SelenideElement successNotification = $(".notification_status_ok");
     private SelenideElement errorNotification = $(".notification_status_error");
     private SelenideElement inputInvalid = $(".input__sub");
+    private SelenideElement anyNotification = $(".notification");
 
     public CreditPage() {
         header.shouldBe(visible).shouldHave(exactText("Кредит по данным карты"));
@@ -43,25 +44,24 @@ public class CreditPage {
         cvvNumberField.sendKeys(CONTROL + "A", DELETE);
     }
 
-    public void fillPaymentInfo (String card, String month, String year, String name, String cvv) {
+    public void fillAndSendPaymentInfo(String card, String month, String year, String name, String cvv) {
         clearField();
         cardNumberField.setValue(card);
         monthField.setValue(month);
         yearField.setValue(year);
         cardHolderField.setValue(name);
         cvvNumberField.setValue(cvv);
+        nextButton.click();
     }
 
     public void successfulSendingForm (String card, String month, String year, String name, String cvv) {
-        fillPaymentInfo(card, month, year, name, cvv);
-        nextButton.click();
+        fillAndSendPaymentInfo(card, month, year, name, cvv);
         successNotification.shouldBe(visible, Duration.ofSeconds(15)).
                 shouldHave(exactText("Успешно\n" + "Операция одобрена Банком."));
     }
 
     public void unsuccessfulSendingForm (String card, String month, String year, String name, String cvv) {
-        fillPaymentInfo(card, month, year, name, cvv);
-        nextButton.click();
+        fillAndSendPaymentInfo(card, month, year, name, cvv);
         errorNotification.shouldBe(visible, Duration.ofSeconds(15)).
                 shouldHave(exactText("Ошибка\n" + "Ошибка! Банк отказал в проведении операции."));
     }
@@ -72,8 +72,11 @@ public class CreditPage {
         inputInvalid.shouldBe(visible);
     }
 
-    public void sendInvalidForm() {
-        nextButton.click();
+    public void inputInvalidError() {
         inputInvalid.shouldBe(visible);
+    }
+
+    public void anyNotification() {
+        anyNotification.shouldBe(visible, Duration.ofSeconds(15));
     }
 }
