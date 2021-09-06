@@ -9,17 +9,8 @@ import java.sql.SQLException;
 public class DatabaseTool {
 
     public static String getCreditId() {
-        var runner = new QueryRunner();
-        var creditId = new String();
         var creditIdSQL = "SELECT credit_id FROM order_entity WHERE created = (SELECT max(created) FROM order_entity);";
-        try (var conn = DriverManager.getConnection(System.getProperty("dbUrl"),
-                System.getProperty("dbUser"), System.getProperty("dbPassword"));) {
-            var creditIDResult = runner.query(conn, creditIdSQL, new ScalarHandler<>());
-            creditId = String.valueOf(creditIDResult);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return creditId;
+        return getValue(creditIdSQL);
     }
 
     public static String getCreditStatus() {
@@ -28,8 +19,8 @@ public class DatabaseTool {
     }
 
     public static String getPaymentStatus() {
-        var creditStatusSQL = "SELECT status FROM payment_entity WHERE created = (SELECT max(created) FROM payment_entity);";
-        return getValue(creditStatusSQL);
+        var paymentStatusSQL = "SELECT status FROM payment_entity WHERE created = (SELECT max(created) FROM payment_entity);";
+        return getValue(paymentStatusSQL);
     }
 
     public static String getValue(String request) {

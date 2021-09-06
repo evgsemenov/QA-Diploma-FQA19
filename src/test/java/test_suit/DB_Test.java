@@ -50,18 +50,17 @@ public class DB_Test {
     }
 
     @Test
-    @SneakyThrows
     @DisplayName("Не должен сохранять номер карты в БД при заказе со страницы оформления кредита")
     void shouldNotSaveCreditIdOnCreditPageTest() {
         var creditPage = tourPurchasePage.buyWithCredit();
         var approvedPayment = DataHelper.approvedPayment(DataHelper.randomPlusMonth());
         creditPage.fillAndSendPaymentInfo(approvedPayment.getCardNumber(), approvedPayment.getMonth(),
                 approvedPayment.getYear(), approvedPayment.getCardHolder(), approvedPayment.getCvv());
+        creditPage.anyNotification();
         assertEquals("null", DatabaseTool.getCreditId());
     }
 
     @Test
-    @SneakyThrows
     @DisplayName("Должен сохранять платеж с действующей карты в БД как одобренный при заказе со страницы оплаты")
     void shouldApprovePaymentsWithApprovedCardOnPaymentPageTest() {
         var paymentPage = tourPurchasePage.payForTour();
@@ -73,7 +72,6 @@ public class DB_Test {
     }
 
     @Test
-    @SneakyThrows
     @DisplayName("Должен сохранять платеж с недействительной карты в БД как отклоненный при заказе со страницы оплаты")
     void shouldDeclinePaymentsWithDeclinedCardOnPaymentPageTest() {
         var paymentPage = tourPurchasePage.payForTour();
@@ -85,7 +83,6 @@ public class DB_Test {
     }
 
     @Test
-    @SneakyThrows
     @DisplayName("Должен сохранять платеж с действующей карты в БД как одобренный при заказе со страницы оформления кредита")
     void shouldApprovePaymentsWithApprovedCardOnCreditPageTest() {
         var creditPage = tourPurchasePage.buyWithCredit();
@@ -97,7 +94,6 @@ public class DB_Test {
     }
 
     @Test
-    @SneakyThrows
     @DisplayName("Должен сохранять платеж с недействительной карты в БД как отклоненный при заказе со страницы оформления кредита")
     void shouldDeclinePaymentsWithDeclinedCardOnCreditPageTest() {
         var creditPage = tourPurchasePage.buyWithCredit();
