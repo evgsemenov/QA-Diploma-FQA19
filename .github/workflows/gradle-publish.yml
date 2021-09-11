@@ -16,7 +16,13 @@ jobs:
       - name: where am I?
         run: pwd
       - name: Build the stack
-        run: docker-compose -f home/runner/work/QA-Diploma-FQA19/QA-Diploma-FQA19/ up -d
+        run: docker-compose -f home/runner/work/QA-Diploma-FQA19/QA-Diploma-FQA19/docker-compose.yml up -d
+      - name: Build the stack 2
+      run: docker-compose -f home/runner/work/QA-Diploma-FQA19/docker-compose.yml up -d
+      - name: Build the stack 3
+      run: docker-compose -f ./home/runner/work/QA-Diploma-FQA19/QA-Diploma-FQA19/docker-compose.yml up -d
+      - name: Build the stack 4
+      run: docker-compose -f ./home/runner/work/QA-Diploma-FQA19/docker-compose.yml up -d
       - name: Check running containers
         run: docker ps -a
 
