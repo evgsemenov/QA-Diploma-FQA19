@@ -17,11 +17,11 @@ jobs:
         run: pwd
       - name: Build the stack
         run: docker-compose -f home/runner/work/QA-Diploma-FQA19/QA-Diploma-FQA19/docker-compose.yml up -d
-      - name: Build the stack 2
+      - name: Build the stack-i
       run: docker-compose -f home/runner/work/QA-Diploma-FQA19/docker-compose.yml up -d
-      - name: Build the stack 3
+      - name: Build the stack-ii
       run: docker-compose -f ./home/runner/work/QA-Diploma-FQA19/QA-Diploma-FQA19/docker-compose.yml up -d
-      - name: Build the stack 4
+      - name: Build the stack-iii
       run: docker-compose -f ./home/runner/work/QA-Diploma-FQA19/docker-compose.yml up -d
       - name: Check running containers
         run: docker ps -a
