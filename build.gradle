@@ -33,7 +33,6 @@ dependencies {
     testImplementation 'mysql:mysql-connector-java:8.0.26'
     testImplementation 'org.postgresql:postgresql:42.2.23'
     testImplementation 'commons-dbutils:commons-dbutils:1.7'
-    testImplementation 'io.rest-assured:rest-assured:4.3.1'
 }
 
 test {
@@ -42,4 +41,5 @@ test {
     systemProperty 'dbUser', System.getProperty('dbUser', "user")
     systemProperty 'dbPassword',  System.getProperty('dbPassword', "pass")
     systemProperty 'dbUrl', System.getProperty('dbUrl', "jdbc:postgresql://localhost:5432/db")
+    systemProperty "file.encoding", "utf-8"
 }
