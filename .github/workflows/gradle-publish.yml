@@ -18,7 +18,7 @@ jobs:
       - name: whats this?
         run: ls
       - name: open project directory
-        run: cd home/runner/work/QA-Diploma-FQA19/QA-Diploma-FQA19/
+        run: cd /home/runner/work/QA-Diploma-FQA19/QA-Diploma-FQA19/
       - name: Build the stack
         run: docker-compose up -d
       - name: third stack
