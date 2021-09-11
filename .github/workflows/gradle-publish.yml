@@ -16,7 +16,7 @@ jobs:
       - name: where am I?
         run: pwd
       - name: open project directory
-        run: |
+        run:
           cd /home/runner/work/QA-Diploma-FQA19/QA-Diploma-FQA19/
           docker-compose up -d --build
       - name: Build the stack
