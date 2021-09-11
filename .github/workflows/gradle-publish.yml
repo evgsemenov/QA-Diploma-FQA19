@@ -19,7 +19,7 @@ jobs:
         run: docker ps -a
 
   test:
-    depends on: environment
+    needs: environment
     runs-on: ubuntu-latest
     steps:
       - name: Set up JDK 11
