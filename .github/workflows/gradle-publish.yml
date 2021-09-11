@@ -17,7 +17,8 @@ jobs:
         run: pwd
       - name: open project directory
         run: |
-          cd /home/runner/work/QA-Diploma-FQA19/QA-Diploma-FQA19/ |
+          cd /home/runner/work/QA-Diploma-FQA19/QA-Diploma-FQA19/
+          |
           docker-compose up -d --build
       - name: Build the stack
         run: docker-compose -f "docker-compose.yml" up -d --build
