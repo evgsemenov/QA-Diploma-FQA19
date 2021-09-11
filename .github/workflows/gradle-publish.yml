@@ -15,8 +15,12 @@ jobs:
 #        run: sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
       - name: where am I?
         run: pwd
+      - name: whats this?
+        run: ls
+      - name: open project directory
+        run: cd home/runner/work/QA-Diploma-FQA19/QA-Diploma-FQA19
       - name: Build the stack
-        run: docker-compose -f home/runner/work/QA-Diploma-FQA19/QA-Diploma-FQA19/ up -d
+        run: docker-compose up -d
       - name: third stack
         run: docker-compose -f ./home/runner/work/QA-Diploma-FQA19/QA-Diploma-FQA19/docker-compose.yml up -d
       - name: fourth stack
