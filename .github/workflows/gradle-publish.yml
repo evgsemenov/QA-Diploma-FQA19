@@ -16,7 +16,7 @@ jobs:
       - name: where am I?
         run: pwd
       - name: Build the stack
-        run: docker-compose -f home/runner/work/QA-Diploma-FQA19/docker-compose.yml up -d
+        run: docker-compose -f home/runner/work/QA-Diploma-FQA19/QA-Diploma-FQA19/ up -d
       - name: third stack
         run: docker-compose -f ./home/runner/work/QA-Diploma-FQA19/QA-Diploma-FQA19/docker-compose.yml up -d
       - name: fourth stack
