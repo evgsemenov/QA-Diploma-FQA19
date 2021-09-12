@@ -15,10 +15,10 @@ jobs:
 #        run: sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
 #      - name: where am I?
 #        run: pwd
-#      - name: open project directory
-#        run: cd /home/runner/work/QA-Diploma-FQA19
+      - name: open project directory
+        run: cd /home/runner/work/QA-Diploma-FQA19
       - name: Build the stack
-        run: docker-compose -f "/home/runner/work/QA-Diploma-FQA19/QA-Diploma-FQA19/docker-compose.yml" up -d --build
+        run: docker-compose -f "/home/runner/work/QA-Diploma-FQA19/docker-compose.yml" up -d --build
       - name: Check running containers
         run: docker ps -a
 
