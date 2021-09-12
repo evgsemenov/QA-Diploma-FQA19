@@ -36,12 +36,16 @@
 
 `gradlew allureReport` (файлы будут помещены в каталог ./build/reports/allure-report)
 
+В каталоге ./build/reports/tests/test находятся отчеты, сгенерированные Gradle.
+
 
 Свертывание контейнеров Docker осуществляется командой 
 
 `docker-compose down`
 
 ### **Ссылки на документацию и отчеты:**
+
+[План автоматизации тестирования](https://github.com/evgsemenov/QA-Diploma-FQA19/blob/master/test-documentation/Plan.md)
 
 [Отчет о проведенном тестировании](https://github.com/evgsemenov/QA-Diploma-FQA19/blob/master/test-documentation/Report.md)
 
