@@ -1,12 +1,9 @@
 name: master
-
 on: [push]
-
 jobs:
   build:
-
+    name: environment
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v2
       - name: Set up JDK 11
@@ -17,10 +14,12 @@ jobs:
         run: chmod +x gradlew
       - name: Docker set up
         run: docker-compose up -d
-      - name: Wait / Sleep
-        uses: jakejarvis/wait-action@v0.1.0
-        with:
-          time: '30s'
+#      - name: Wait / Sleep
+#        uses: jakejarvis/wait-action@v0.1.0
+#        with:
+#          time: '30s'
+      needs: environment
+      steps:
       - name: install
         run: java -Dspring.datasource.url=jdbc:postgresql://localhost:5432/db -jar artifacts/aqa-shop.jar &
       - name: Build with Gradle
