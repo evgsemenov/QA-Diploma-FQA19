@@ -1,3 +1,4 @@
+ [![master](https://github.com/evgsemenov/QA-Diploma-FQA19/actions/workflows/gradle-publish.yml/badge.svg)](https://github.com/evgsemenov/QA-Diploma-FQA19/actions/workflows/gradle-publish.yml)
 # Дипломная работа профессии "Тестировщик ПО"
 
 ### Данная работа представляет собой проект по автоматизированному тестированию web-приложения для покупки туристического тура.
