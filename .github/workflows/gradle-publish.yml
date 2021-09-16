@@ -14,10 +14,6 @@ jobs:
         run: chmod +x gradlew
       - name: Docker set up
         run: docker-compose up -d
-#      - name: Wait / Sleep
-#        uses: jakejarvis/wait-action@v0.1.0
-#        with:
-#          time: '30s'
       needs: environment
       steps:
       - name: install
