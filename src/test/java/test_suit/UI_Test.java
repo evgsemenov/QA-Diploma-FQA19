@@ -131,7 +131,7 @@ public class UI_Test {
     }
 
     @Test
-    @DisplayName("Должен показать ошибку при оформлении покупки по активной карте со сроком истечения более 5 лет")
+    @DisplayName("Должен показать ошибку при оформлении покупки по карте, истекшей в прошлом календарном месяце")
     void shouldGetErrorIfBuyTourWithExpiredCardOnPaymentPageTest() {
         var paymentPage = tourPurchasePage.payForTour();
         var approvedPayment = DataHelper.approvedPayment(-1);
@@ -159,7 +159,7 @@ public class UI_Test {
     }
 
     @Test
-    @DisplayName("Должен показать ошибку при оформлении покупки по активной карте со сроком истечения более 5 лет")
+    @DisplayName("Должен показать ошибку при оформлении кредита по активной карте со сроком истечения более 5 лет")
     void shouldGetErrorIfBuyTourWith61MonthExpiredCardOnCreditPageTest() {
         var creditPage = tourPurchasePage.buyWithCredit();
         var approvedPayment = DataHelper.approvedPayment(61);
@@ -187,7 +187,7 @@ public class UI_Test {
     }
 
     @Test
-    @DisplayName("Должен показать ошибку при оформлении кредита по активной карте со сроком истечения более 5 лет")
+    @DisplayName("Должен показать ошибку при оформлении кредита по карте, истекшей в прошлом календарном месяце")
     void shouldGetErrorIfBuyTourWithExpiredCardOnCreditPageTest() {
         var creditPage = tourPurchasePage.buyWithCredit();
         var approvedPayment = DataHelper.approvedPayment(-1);
